@@ -1,6 +1,6 @@
 "use strict";
-// var input = require("fs").readFileSync("/dev/stdin", "utf8");
-var input = require("fs").readFileSync("B.txt", "utf8");
+var input = require("fs").readFileSync("/dev/stdin", "utf8");
+// var input = require("fs").readFileSync("B.txt", "utf8");
 
 var cin = input.split(/ |\n/), cid = 0;
 function next() { return +cin[cid++]; }
@@ -18,10 +18,23 @@ if (streams.length) console.log(streams.join("\n"));
 
 function main() {
     // TODO
-    var [H,W,c,q] = nexts(4);
-    var d = nextm(q,3);
-    var ans = xArray(0,c);
-    var h = new Set();
-    var w = new Set();
+    var [H, W, c, q] = nexts(4);
+    var d = nextm(q, 3);
+    var ans = xArray(0, c);
+    var doneCol = [];
+    var doneRow = [];
 
+    for (var idx in d) {
+        var query = d[q - idx - 1];
+        if (query[0] == 1 && doneRow.indexOf(query[1]) == -1) {
+            doneRow.push(query[1]);
+            ans[query[2] - 1] += W - doneCol.length;
+        }
+        if (query[0] == 2 && doneCol.indexOf(query[1]) == -1) {
+            doneCol.push(query[1]);
+            ans[query[2] - 1] += H - doneRow.length;
+        }
+    }
+
+    streams = ans;
 }
