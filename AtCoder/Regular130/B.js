@@ -1,6 +1,6 @@
 "use strict";
 // var input = require("fs").readFileSync("/dev/stdin", "utf8");
-var input = require("fs").readFileSync("A.txt", "utf8");
+var input = require("fs").readFileSync("B.txt", "utf8");
 
 var cin = input.split(/ |\n/), cid = 0;
 function next() { return +cin[cid++]; }
@@ -17,23 +17,11 @@ if (myOut !== undefined) console.log(String(myOut));
 if (streams.length) console.log(streams.join("\n"));
 
 function main() {
-    var n = next();
-    var s = nextstr();
-    var ans = 0;
-    var t, x = 0;
-    for (var i = 0; i < n; i++) {
-        if (x === 0) {
-            t = s[i];
-            x = 1;
-        } else {
-            if (t === s[i]) {
-                x++;
-            } else {
-                ans += x * (x - 1) / 2;
-                t = s[i];
-                x = 1;
-            }
-        }
-    }
-    return ans + x * (x - 1) / 2;
+    // TODO
+    var [H,W,c,q] = nexts(4);
+    var d = nextm(q,3);
+    var ans = xArray(0,c);
+    var h = new Set();
+    var w = new Set();
+
 }
