@@ -1,22 +1,22 @@
 "use strict";
 // 出典：https://atcoder.jp/users/catoon
 
-// var input = require("fs").readFileSync("/dev/stdin", "utf8");
-var input = require("fs").readFileSync(".txt", "utf8");
+var input = require("fs").readFileSync("/dev/stdin", "utf8");
+// var input = require("fs").readFileSync("A.txt", "utf8");
 
 var cin = input.split(/ |\n/), cid = 0;
 /**
- * 次の値を数値として一つ取得する
+ * 次の値を数値として１行取得する
  * @returns {number}
  */
 function next() { return +cin[cid++]; }
 /**
- * 次の値を文字として一つ取得する
+ * 次の値を文字として１行取得する
  * @returns {string}
  */
 function nextstr() { return cin[cid++]; }
 /**
- * 次の値をbigIntとして一つ取得する
+ * 次の値をbigIntとして１行取得する
  * @returns {bigint}
  */
 function nextbig() { return BigInt(cin[cid++]); }
@@ -54,11 +54,13 @@ function nextm(h, w, a) { var r = [], i = 0; if (a) for (; i < h; i++)r.push(cin
 function xArray(v) { var a = arguments, l = a.length, r = "Array(a[" + --l + "]).fill().map(x=>{return " + v + ";})"; while (--l) r = "Array(a[" + l + "]).fill().map(x=>" + r + ")"; return eval(r); }
 var streams = []; function print(s) { streams.push(s); }
 
+
+function main() {
+    let x = next();
+    x = Math.round(x);
+    return x;
+}
+
 var myOut = main();
 if (myOut !== undefined) console.log(String(myOut));
 if (streams.length) console.log(streams.join("\n"));
-
-function main() {
-    // TODO
-
-}
