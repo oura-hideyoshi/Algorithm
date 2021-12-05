@@ -20,6 +20,7 @@ function* makePermIterator(arr, len) {
 //     console.log(bin);
 // }
 
+// 全順列探索イテレーター
 function makePermIterator(arr, k = arr.length) {
     var l = arr.length,
         used = Array(k),
@@ -35,9 +36,36 @@ function makePermIterator(arr, k = arr.length) {
     }(0);
 }
 
-var p = makePermIterator([1, 2, 3, 4], 2);
-for (const perm of p) {
-    console.log(perm);
+// var p = makePermIterator([1, 2, 3, 4], 2);
+// for (const perm of p) {
+//     console.log(perm);
+// }
+
+
+/**
+ * 2分探索
+ * @param Array arr ソート済みの探索対象配列
+ * @param Int target 探索する値
+ * @return Array 探索結果の添字 見つからなかった場合は-1を返す
+ */
+function binarySearch(arr, target) {
+    let idx = -1;
+    let iMin = 0;
+    let iMax = arr.length - 1;
+    while (iMin <= iMax) {
+        let iMid = Math.floor((iMin + iMax) / 2);
+        if (arr[iMid] === target) {
+            idx = iMid;
+            break;
+        } else if (arr[iMid] < target) {
+            iMin = iMid + 1;
+        } else {
+            iMax = iMid - 1;
+        }
+    }
+    return [idx, iMin, iMax]
 }
 
-
+var arr = [1,6,6,2,6,8,8,4,1,36,8,54,12,6,8,8,5,0,5].sort((a,b) => a-b);
+console.log(...arr);
+console.log(binarySearch(arr, 8));
