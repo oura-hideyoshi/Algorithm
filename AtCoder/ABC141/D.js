@@ -1,33 +1,11 @@
-class UnionFind {
-    constructor(N) {
-        this.par = [...Array(N).keys()].slice(0);
-    }
+'use strict';
+var input = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\n');
+// var input = require('fs').readFileSync('input.txt', 'utf8').trim().split('\n');
 
-    root(x) {
-        return this.par[x] == x ? x : this.par[x] = this.root(this.par[x]);
-    }
-
-    unite(x, y) {
-        let rx = this.root(x);
-        let ry = this.root(y);
-        if (rx == ry) return;
-        this.par[rx] = ry;
-    }
-
-    isSame(x, y) {
-        let rx = this.root(x);
-        let ry = this.root(y);
-        return rx == ry;
-    }
-}
-
-// var UF = new UnionFind(10);
-// UF.unite(1, 2);
-// UF.unite(2, 3);
-// UF.unite(3, 4);
-// UF.unite(4, 5);
-// console.log(UF.root(1));
-// console.log(...UF.par)
+let cid = 0;
+const getLine = (isStr = false) => { cid++; return isStr ? input[cid - 1].trim().split(' ') : input[cid - 1].split(' ').map(e => +e) };
+const getLines = (n = 1, isStr = false) => { cid += n; return isStr ? input.slice(cid - n, cid).map(line => line.trim().split(' ')) : input.slice(cid - n, cid).map(line => line.split(' ').map(e => +e)) }
+var streams = []; function print(s) { streams.push(s); }
 
 class binary_heap {
     constructor() {
@@ -127,13 +105,25 @@ class binary_heap {
     };
 }
 
-var bh = new binary_heap();
-var arr = [1,5,79,5,64,1,2,5,1,3,4,8,5,8,9,2,4,5,6,52,6,58,4];
-for(let v of arr){
-    bh.enqueue(v,v)
-}
-for(let idx in arr){
-    let v = bh.dequeue();
-    console.log(v);
-    bh.enqueue(Math.floor(v/2),Math.floor(v/2))
-}
+
+function main() {
+    const [N, M] = getLine(); // 賞品・チケット
+    let prices = getLine();
+
+    let bh = new binary_heap();
+    for (let v of prices) {
+        bh.enqueue(v, v);
+    }
+
+    for (let idx = 0; idx < M; idx++) {
+        let v = bh.dequeue();
+        bh.enqueue(Math.floor(v / 2), Math.floor(v / 2));
+    }
+
+    prices = bh._data.map(e => e.v);
+    return prices.reduce((e, sum) => e + sum, 0)
+};
+
+var myOut = main();
+if (myOut !== undefined) console.log(String(myOut));
+if (streams.length) console.log(streams.join('\n'));
