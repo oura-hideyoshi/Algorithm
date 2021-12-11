@@ -36,6 +36,16 @@ class UnionFind {
 // console.log(UF.root(1));
 // console.log(...UF.par)
 
+class Tree {
+    constructor(N) {
+        this.path = Array(N).fill().map(e => new Set());
+    }
+
+    addPath(start, end) {
+        this.path[start].add(end);
+    }
+}
+
 class binary_heap {
     constructor() {
         this._data = [];
