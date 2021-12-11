@@ -5,7 +5,7 @@
 		"body": [
 			"'use strict';",
 			"$LINE_COMMENT var input = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\\n');",
-			"var input = require('fs').readFileSync('input.txt', 'utf8').trim().split('\\n');",
+			"var input = require('fs').readFileSync('../input.txt', 'utf8').trim().split('\\n');",
 			"",
 			"let cid = 0;",
 			"const getLine = (isStr = false) => { cid++; return isStr ? input[cid - 1].trim().split(' ') : input[cid - 1].split(' ').map(e => +e) };",

@@ -1,6 +1,7 @@
 class UnionFind {
     constructor(N) {
         this.par = [...Array(N).keys()].slice(0);
+        this.size = Array(N).fill(1);
     }
 
     root(x) {
@@ -11,7 +12,13 @@ class UnionFind {
         let rx = this.root(x);
         let ry = this.root(y);
         if (rx == ry) return;
-        this.par[rx] = ry;
+        if (this.size[rx] < this.size[ry]) {
+            this.par[rx] = ry;
+            this.size[ry] += this.size[rx];
+        } else {
+            this.par[ry] = rx;
+            this.size[rx] += this.size[ry];
+        }
     }
 
     isSame(x, y) {
@@ -128,12 +135,12 @@ class binary_heap {
 }
 
 var bh = new binary_heap();
-var arr = [1,5,79,5,64,1,2,5,1,3,4,8,5,8,9,2,4,5,6,52,6,58,4];
-for(let v of arr){
-    bh.enqueue(v,v)
+var arr = [1, 5, 79, 5, 64, 1, 2, 5, 1, 3, 4, 8, 5, 8, 9, 2, 4, 5, 6, 52, 6, 58, 4];
+for (let v of arr) {
+    bh.enqueue(v, v)
 }
-for(let idx in arr){
+for (let idx in arr) {
     let v = bh.dequeue();
     console.log(v);
-    bh.enqueue(Math.floor(v/2),Math.floor(v/2))
+    bh.enqueue(Math.floor(v / 2), Math.floor(v / 2))
 }

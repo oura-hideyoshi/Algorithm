@@ -43,29 +43,28 @@ function makePermIterator(arr, k = arr.length) {
 
 
 /**
- * 2分探索
- * @param Array arr ソート済みの探索対象配列
- * @param Int target 探索する値
- * @return Array 探索結果の添字 見つからなかった場合は-1を返す
+ * 二分探索
+ * 
+ * @param {Array<any>} arr orderd by asc
+ * @param {any} target 
+ * @param {Function} callBack ex) (a,target) => a < target
+ * @returns 
  */
-function binarySearch(arr, target) {
-    let idx = -1;
-    let iMin = 0;
-    let iMax = arr.length - 1;
-    while (iMin <= iMax) {
-        let iMid = Math.floor((iMin + iMax) / 2);
-        if (arr[iMid] === target) {
-            idx = iMid;
-            break;
-        } else if (arr[iMid] < target) {
-            iMin = iMid + 1;
+function binarySearch(arr, target, callBack) {
+    let iMid;
+    let iMin = -1;
+    let iMax = arr.length;
+    while (1 < iMax - iMin) {
+        iMid = Math.floor((iMin + iMax) / 2);
+        if (callBack(arr[iMid], target)) {
+            iMin = iMid;
         } else {
-            iMax = iMid - 1;
+            iMax = iMid;
         }
     }
-    return [idx, iMin, iMax]
+    return [iMid, iMin, iMax]
 }
 
-var arr = [1,6,6,2,6,8,8,4,1,36,8,54,12,6,8,8,5,0,5].sort((a,b) => a-b);
+var arr = [1, 6, 6, 2, 6, 8, 8, 4, 1, 36, 8, 54, 8, 6, 7, 8, 5, 0, 5].sort((a, b) => a - b);
 console.log(...arr);
-console.log(binarySearch(arr, 8));
+console.log(binarySearch(arr, 6, (a, b) => a < b));
