@@ -29,6 +29,16 @@ class UnionFind {
 // console.log(UF.root(1));
 // console.log(...UF.par)
 
+class Tree {
+    constructor(N) {
+        this.path = Array(N).fill().map(e => new Set());
+    }
+
+    addPath(start, end) {
+        this.path[start].add(end);
+    }
+}
+
 class binary_heap {
     constructor() {
         this._data = [];
@@ -127,13 +137,13 @@ class binary_heap {
     };
 }
 
-var bh = new binary_heap();
-var arr = [1,5,79,5,64,1,2,5,1,3,4,8,5,8,9,2,4,5,6,52,6,58,4];
-for(let v of arr){
-    bh.enqueue(v,v)
-}
-for(let idx in arr){
-    let v = bh.dequeue();
-    console.log(v);
-    bh.enqueue(Math.floor(v/2),Math.floor(v/2))
-}
+// var bh = new binary_heap();
+// var arr = [1,5,79,5,64,1,2,5,1,3,4,8,5,8,9,2,4,5,6,52,6,58,4];
+// for(let v of arr){
+//     bh.enqueue(v,v)
+// }
+// for(let idx in arr){
+//     let v = bh.dequeue();
+//     console.log(v);
+//     bh.enqueue(Math.floor(v/2),Math.floor(v/2))
+// }
