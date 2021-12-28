@@ -11,11 +11,14 @@ var streams = []; function print(s) { streams.push(s); }
 
 
 function main() {
-    const [X, Y] = getLine();
-    if (X < Y)
-        return Math.ceil((Y - X) / 10)
-    else
-        return 0
+    const [L, R] = getLine();
+    let [s] = getLine(1);
+
+    let former = s.slice(0, L-1);
+    let middle = s.slice(L-1, R).split("").reverse().join("");
+    let later = s.slice(R, s.length);
+
+    return former + middle + later;
 
 };
 

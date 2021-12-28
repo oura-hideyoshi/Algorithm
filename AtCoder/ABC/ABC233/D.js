@@ -1,6 +1,6 @@
 'use strict';
-var input = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\n');
-// var input = require('fs').readFileSync('../input.txt', 'utf8').trim().split('\n');
+// var input = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\n');
+var input = require('fs').readFileSync('../input.txt', 'utf8').trim().split('\n');
 
 let cid = 0;
 const getLine = (isStr = false) => { cid++; return isStr ? input[cid - 1].trim().split(' ') : input[cid - 1].split(' ').map(e => +e) };
@@ -11,11 +11,14 @@ var streams = []; function print(s) { streams.push(s); }
 
 
 function main() {
-    const [X, Y] = getLine();
-    if (X < Y)
-        return Math.ceil((Y - X) / 10)
-    else
-        return 0
+    const [N, K] = getLine();
+    const num = getLine();
+    let sums = xArray(0, N);
+
+    let total = 0;
+    for (let idx = 0; idx < N; idx++) {
+        sums[idx] = total += num[idx];
+    }
 
 };
 
