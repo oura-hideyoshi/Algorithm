@@ -1,0 +1,28 @@
+{
+    "initial Python script for AtCoder": {
+        "scope": "python",
+        "prefix": "init",
+        "body": [
+            "import io",
+            "import sys",
+            "_INPUT = '''\\",
+            "",
+            "'''",
+            "sys.stdin = io.StringIO(_INPUT)"
+        ]
+    },
+    "print": {
+        "scope": "python",
+        "prefix": "pri",
+        "body": [
+            "print($1)"
+        ]
+    },
+    "map(int, input().split())": {
+        "scope": "python",
+        "prefix": "map(int, input().split())",
+        "body": [
+            "map(int, input().split())"
+        ]
+    }
+}
